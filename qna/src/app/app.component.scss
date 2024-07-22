@@ -1,0 +1,12 @@
+.btn-wrap-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .list-group-item {
+    height: 85px;
+    overflow-y: auto;
+    white-space: normal;
+    max-width: 100%;
+    word-break: break-all;
+  }

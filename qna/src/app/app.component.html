@@ -1,0 +1,53 @@
+<div class="container-sm">
+  <h3 class="mb-5">Welcome to our support management</h3>
+  <div class="row mb-5">
+    <div class="col-12">
+      <form [formGroup]="form">
+        <div class="mb-3">
+          <label for="exampleInputQ" class="form-label">Question</label>
+          <input 
+            type="text"
+            class="form-control" 
+            id="exampleInputQ" 
+            aria-describedby="qHelp" 
+            formControlName="question"
+          >
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputQ" class="form-label">Answer</label>
+          <textarea 
+            class="form-control" 
+            id="exampleInputA" 
+            aria-describedby="aHelp" 
+            rows="3"
+            formControlName="answer"
+            ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary me-2" [disabled]="isBeingEdited" (click)="onSubmit()">Add</button>
+        <button class="btn btn-primary me-2" (click)="saveQuestion()" [disabled]="!isBeingEdited">Save</button>
+        <button class="btn btn-warning" (click)="onCancel()" [disabled]="!isBeingEdited">Cancel</button>
+        
+      </form>
+    </div>
+  </div>
+
+  <hr>
+
+  <ng-container *ngFor="let question of questions$ | async">
+    <div class="row mb-5" >
+      <div class="col-8">
+        <ul class="list-group">
+          <li class="list-group-item" >
+            {{ question.question }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-4 d-flex align-items-center">
+        <button type="button" class="btn btn-secondary me-2 w-100 btn-wrap-text" (click)="editQuestion(question['id'])" [disabled]="isBeingEdited || question.isBeingEdited">Edit</button>
+        <button type="button" class="btn btn-danger w-100 btn-wrap-text" (click)="deleteQuestion(question['id'])" [disabled]="isBeingEdited || question.isBeingEdited">Delete</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
