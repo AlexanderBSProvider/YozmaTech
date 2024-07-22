@@ -82,7 +82,7 @@ the results by the big spender in descending order
 WITH recent_orders AS (
     SELECT 
         user_id, 
-        COUNT(*) AS order_count, 
+        COUNT(**) AS order_count, 
         SUM(amount) AS total_spent
     FROM 
         orders
@@ -91,7 +91,7 @@ WITH recent_orders AS (
     GROUP BY 
         user_id
     HAVING 
-        COUNT(*) > 5
+        COUNT(**) > 5
 )
 SELECT 
     u.name, 
